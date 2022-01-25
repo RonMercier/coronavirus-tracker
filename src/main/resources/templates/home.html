@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org" lang="en">
+
+<head>
+<style>
+  .jumbotron {
+    background-image: url("https://i0.wp.com/silentvoice.ca/wp-content/uploads/2020/03/COVID-19-background.png?ssl=1");
+    box-shadow: 10px 10px 5px grey;
+    background-size: cover;
+  }
+
+  h1 {
+    color: darkblue;
+    font-weight: bolder;
+    text-align: center;
+    text-space: 25px;
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+  }
+
+  #header2 {
+    text-align: center;
+    font-family: 'Play', sans-serif;
+  }
+
+  #NewCases, .lead{
+    color: white;
+    font-family: 'Play', sans-serif;
+  }
+  .table {
+    box-shadow: 10px 10px 5px grey;
+  }
+  .total {
+    color: white;
+    size: 20px;
+    text-align: left;
+  }
+</style>
+
+  <title>Coronavirus Tracker App</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Nunito&family=Play:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container">
+  <h1 style="font-weight: bold">Coronavirus Tracker</h1>
+
+  <p id="header2">This application presents the current total confirmed reported cases of Coronavirus around the World</p>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <p class="lead">Total Reported Cases : <strong class="total" th:text="${totalCasesReported}"></strong></p>
+          <hr class="my-4">
+          <p id="NewCases">New cases reported Today : <strong th:text="${newCasesReported}"></strong></p>
+        </div>
+      </div>
+
+      <table class="table table-dark table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th>COUNTRY</th>
+          <th>STATE</th>
+          <th>TOTAL CASES REPORTED</th>
+          <th>SINCE LAST DAY</th>
+
+        </tr>
+        </thead>
+        <tr th:each="locationStat : ${locationStats}">
+          <td th:text="${locationStat.country}"></td>
+          <td th:text="${locationStat.state}"></td>
+          <td th:text="${locationStat.latestTotalCases}"></td>
+          <td th:text="${locationStat.addedSincePrevDay}"></td>
+        </tr>
+      </table>
+  </div>
+</body>
+
+</html>
