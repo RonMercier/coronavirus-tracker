@@ -31,7 +31,7 @@ public class CoronaVirusDataService {
                 .uri(URI.create(CORONA_DATA_URL))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        //System.out.println(response.body());
+        
         StringReader in = new StringReader(response.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
         ArrayList<LocationStats> newStats = new ArrayList<>();
